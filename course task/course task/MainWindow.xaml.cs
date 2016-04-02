@@ -24,5 +24,17 @@ namespace course_task
         {
             InitializeComponent();
         }
+
+        private void buttonReg_Click(object sender, RoutedEventArgs e)
+        {
+            WindowReg WindowReg = new WindowReg();
+            WindowReg.Show();
+        }
+
+        private void buttonLog_Click(object sender, RoutedEventArgs e)
+        {
+            WindowLog WindowLog = new WindowLog();
+            WindowLog.Show(); 
+        }
     }
 }

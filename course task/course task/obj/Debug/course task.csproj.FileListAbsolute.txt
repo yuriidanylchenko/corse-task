@@ -1,1 +1,20 @@
 C:\Stady\prmib\kursach\course task\course task\course task\bin\Debug\course task.exe.config
+C:\Stady\prmib\kursach\course task\course task\course task\bin\Debug\course task.exe
+C:\Stady\prmib\kursach\course task\course task\course task\bin\Debug\course task.pdb
+C:\Stady\prmib\kursach\course task\course task\course task\obj\Debug\course task.csprojResolveAssemblyReference.cache
+C:\Stady\prmib\kursach\course task\course task\course task\obj\Debug\MainWindow.g.cs
+C:\Stady\prmib\kursach\course task\course task\course task\obj\Debug\WindowReg.g.cs
+C:\Stady\prmib\kursach\course task\course task\course task\obj\Debug\App.g.cs
+C:\Stady\prmib\kursach\course task\course task\course task\obj\Debug\course task_MarkupCompile.cache
+C:\Stady\prmib\kursach\course task\course task\course task\obj\Debug\course task_MarkupCompile.lref
+C:\Stady\prmib\kursach\course task\course task\course task\obj\Debug\MainWindow.baml
+C:\Stady\prmib\kursach\course task\course task\course task\obj\Debug\WindowReg.baml
+C:\Stady\prmib\kursach\course task\course task\course task\obj\Debug\course task.g.resources
+C:\Stady\prmib\kursach\course task\course task\course task\obj\Debug\course_task.Properties.Resources.resources
+C:\Stady\prmib\kursach\course task\course task\course task\obj\Debug\course task.csproj.GenerateResource.Cache
+C:\Stady\prmib\kursach\course task\course task\course task\obj\Debug\course task.exe
+C:\Stady\prmib\kursach\course task\course task\course task\obj\Debug\course task.pdb
+C:\Stady\prmib\kursach\course task\course task\course task\obj\Debug\WindowLog.g.cs
+C:\Stady\prmib\kursach\course task\course task\course task\bin\Debug\Npgsql.dll
+C:\Stady\prmib\kursach\course task\course task\course task\bin\Debug\Npgsql.xml
+C:\Stady\prmib\kursach\course task\course task\course task\obj\Debug\WindowLog.baml
