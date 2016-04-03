@@ -12,8 +12,9 @@
         <TextBox x:Name="textBoxLog" HorizontalAlignment="Left" Height="23" Margin="92,71,0,0" TextWrapping="Wrap" Text="login" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="textBoxPass" HorizontalAlignment="Left" Height="23" Margin="92,99,0,0" TextWrapping="Wrap" Text="password" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="textBoxRePass" HorizontalAlignment="Left" Height="23" Margin="92,127,0,0" TextWrapping="Wrap" Text="re-enter password" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="buttonReg" Content="Регистрация" HorizontalAlignment="Left" Margin="69,171,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="buttonReg" Content="Регистрация" HorizontalAlignment="Left" Margin="69,171,0,0" VerticalAlignment="Top" Width="75" Click="buttonReg_Click"/>
         <Button x:Name="buttonClose" Content="Выход" HorizontalAlignment="Left" Margin="160,171,0,0" VerticalAlignment="Top" Width="75"/>
+        <TextBox x:Name="textBoxId" HorizontalAlignment="Left" Height="23" Margin="21,10,0,0" TextWrapping="Wrap" Text="id" VerticalAlignment="Top" Width="66"/>
 
     </Grid>
 </Window>
