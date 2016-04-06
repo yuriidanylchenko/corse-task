@@ -25,30 +25,37 @@ namespace course_task
             InitializeComponent();
         }
 
+       
+        
+      
         private void buttonReg_Click(object sender, RoutedEventArgs e)
         {
-            // try
-            //{
-           // bool insertdata = false;
+          try
+            {
+           
+                NpgsqlConnection conn = new NpgsqlConnection("Server=192.168.0.100; Port=5432; User Id=yurii; Password=yurii2104; Database=database");
+            try
+                {
+                    conn.Open();
+                }
+            catch
+                {
+                    MessageBox.Show("No connectin to database. Check connection and try again");
+                }
                 
-                NpgsqlConnection conn = new NpgsqlConnection("Server=192.168.0.101; Port=5432; User Id=yurii; Password=yurii2104; Database=database");
-                conn.Open();
-                NpgsqlCommand cmd = new NpgsqlCommand("insert into database values (@id,@mail,@login,@pass)", conn);
-                cmd.Parameters.Add(new NpgsqlParameter("@id", int.Parse(textBoxId.Text)));
-                cmd.Parameters.Add(new NpgsqlParameter("@mail", textBoxMail.Text));
+               
+
+                NpgsqlCommand cmd = new NpgsqlCommand("insert into usertable values(@id, @login, @pass)", conn);
                 cmd.Parameters.Add(new NpgsqlParameter("@login", textBoxLog.Text));
                 cmd.Parameters.Add(new NpgsqlParameter("@pass", textBoxPass.Text));
-            int count = cmd.ExecuteNonQuery();
-            if (count == 1)
-            { MessageBox.Show("ok"); }
-            //    cmd.ExecuteNonQuery();
-               conn.Close();
-            //}
-            //catch (Exception msg)
-            //{
-            //    MessageBox.Show(msg.ToString());
-            //    throw;
-            //}
+                cmd.ExecuteNonQuery();
+                conn.Close();
+            }
+            catch (Exception msg)
+            {
+                MessageBox.Show(msg.ToString());
+                throw;
+            }
         }
     }
 }
