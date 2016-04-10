@@ -29,10 +29,10 @@ namespace course_task
         {
             bool blnfound = false;
 
-            NpgsqlConnection conn = new NpgsqlConnection("Server=192.168.0.100; Port=5432; User Id=yurii; Password=yurii2104; Database=database");
+            NpgsqlConnection conn = new NpgsqlConnection("Server=192.168.0.107; Port=5432; User Id=yurii; Password=yurii2104; Database=database");
             conn.Open();
 
-            NpgsqlCommand cmd = new NpgsqlCommand("Select * from usertable where login = '" +textBoxLogin.Text + "' and pass= '" +textBoxPassword.Text +"'", conn);
+            NpgsqlCommand cmd = new NpgsqlCommand("Select * from abonents where email = '" +textBoxEmail.Text + "' and password= '" +textBoxPassword.Text +"'", conn);
             NpgsqlDataReader dr = cmd.ExecuteReader();
 
             if (dr.Read())
