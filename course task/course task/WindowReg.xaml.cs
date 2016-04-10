@@ -74,14 +74,6 @@ namespace course_task
             }
         }
 
-        private void checkBox_Checked(object sender, RoutedEventArgs e)
-        {
-            if (checkBox.Checked = true)
-            {
-                
-                passwordBoxPassword.PasswordChar = "*";
-            }
-          
-        }
+        
     }
 }
