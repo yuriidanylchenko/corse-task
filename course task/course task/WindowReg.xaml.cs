@@ -31,7 +31,7 @@ namespace course_task
         
       
         private void buttonReg_Click(object sender, RoutedEventArgs e)
-        {   
+        { bool blnfound;
 
 
             string lastName = textBoxlastName.Text.Replace(" ", string.Empty);
@@ -54,17 +54,35 @@ namespace course_task
 
                     NpgsqlConnection conn = new NpgsqlConnection("Server=192.168.0.107; Port=5432; User Id=yurii; Password=yurii2104; Database=database");
                     conn.Open();
-                    NpgsqlCommand cmd = new NpgsqlCommand("insert into abonents (firstname, lastname, phonenumber, email, password, rate) VALUES (@firstName, @lastName, @phoneNumber, @email, @password, @rate)", conn);
-                    cmd.Parameters.Add(new NpgsqlParameter("@firstName", firstName));
-                    cmd.Parameters.Add(new NpgsqlParameter("@lastName", lastName));
-                    cmd.Parameters.Add(new NpgsqlParameter("@phoneNumber", phoneNumber));
-                    cmd.Parameters.Add(new NpgsqlParameter("@email", email));
-                    cmd.Parameters.Add(new NpgsqlParameter("@password", password));
-                    cmd.Parameters.Add(new NpgsqlParameter("@rate", rate));
 
-                    cmd.ExecuteNonQuery();
+
+                    //проверка на существование уже зарегистрированного email'а
+                    NpgsqlCommand cmdSelect = new NpgsqlCommand("select * from abonents where email = '" + textBoxEmail.Text + "'", conn);
+                    NpgsqlDataReader dr = cmdSelect.ExecuteReader();
+
+                    if (dr.Read())
+                    {
+                        blnfound = true;
+                        MessageBox.Show("такой email уже зарегистрирован");
+
+                    }
+                    else { 
+                            NpgsqlCommand cmd = new NpgsqlCommand("insert into abonents (firstname, lastname, phonenumber, email, password, rate) VALUES (@firstName, @lastName, @phoneNumber, @email, @password, @rate)", conn);
+                            cmd.Parameters.Add(new NpgsqlParameter("@firstName", firstName));
+                            cmd.Parameters.Add(new NpgsqlParameter("@lastName", lastName));
+                            cmd.Parameters.Add(new NpgsqlParameter("@phoneNumber", phoneNumber));
+                            cmd.Parameters.Add(new NpgsqlParameter("@email", email));
+                            cmd.Parameters.Add(new NpgsqlParameter("@password", password));
+                            cmd.Parameters.Add(new NpgsqlParameter("@rate", rate));
+                            cmd.ExecuteNonQuery();
+                            MessageBox.Show("registration successful");
+
+                        //    NpgsqlCommand cmdlog = new NpgsqlCommand("insert into log (event) VALUES (user @email succesfull registred)", conn);
+                        //    cmdlog.Parameters.Add(new NpgsqlParameter("@email", email));
+                    }
+                        
                     conn.Close();
-                    MessageBox.Show("registration successful");
+                    
                 }
                 catch
                 {
