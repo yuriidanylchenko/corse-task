@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Npgsql;
+using System.Security.Cryptography;
 
 namespace course_task
 {
@@ -31,7 +32,8 @@ namespace course_task
         
       
         private void buttonReg_Click(object sender, RoutedEventArgs e)
-        {   
+        {
+            bool blnfound = false;  
 
 
             string lastName = textBoxlastName.Text.Replace(" ", string.Empty);
@@ -46,7 +48,7 @@ namespace course_task
             else
             {
 
-
+                string passwordhash = BitConverter.ToString(new SHA512Managed().ComputeHash(Encoding.ASCII.GetBytes(password))).Replace("-", "");
 
 
                 try
@@ -54,17 +56,32 @@ namespace course_task
 
                     NpgsqlConnection conn = new NpgsqlConnection("Server=192.168.0.107; Port=5432; User Id=yurii; Password=yurii2104; Database=database");
                     conn.Open();
-                    NpgsqlCommand cmd = new NpgsqlCommand("insert into abonents (firstname, lastname, phonenumber, email, password, rate) VALUES (@firstName, @lastName, @phoneNumber, @email, @password, @rate)", conn);
-                    cmd.Parameters.Add(new NpgsqlParameter("@firstName", firstName));
-                    cmd.Parameters.Add(new NpgsqlParameter("@lastName", lastName));
-                    cmd.Parameters.Add(new NpgsqlParameter("@phoneNumber", phoneNumber));
-                    cmd.Parameters.Add(new NpgsqlParameter("@email", email));
-                    cmd.Parameters.Add(new NpgsqlParameter("@password", password));
-                    cmd.Parameters.Add(new NpgsqlParameter("@rate", rate));
 
-                    cmd.ExecuteNonQuery();
+                    /*NpgsqlCommand cmdselect = new NpgsqlCommand("Select * from abonents where email = '" + textBoxEmail.Text + "'", conn);
+                    NpgsqlDataReader dr = cmdselect.ExecuteReader();
+
+                    if (dr.Read())
+                    {
+                        blnfound = true;
+                        MessageBox.Show("Такой email уже существует");
+
+                    }
+
+                    else
+                    {*/
+                        NpgsqlCommand cmd = new NpgsqlCommand("insert into abonents (firstname, lastname, phonenumber, email, password, rate) VALUES (@firstName, @lastName, @phoneNumber, @email, @passwordhash, @rate)", conn);
+                        cmd.Parameters.Add(new NpgsqlParameter("@firstName", firstName));
+                        cmd.Parameters.Add(new NpgsqlParameter("@lastName", lastName));
+                        cmd.Parameters.Add(new NpgsqlParameter("@phoneNumber", phoneNumber));
+                        cmd.Parameters.Add(new NpgsqlParameter("@email", email));
+                        cmd.Parameters.Add(new NpgsqlParameter("@passwordhash", passwordhash));
+                        cmd.Parameters.Add(new NpgsqlParameter("@rate", rate));
+
+                        cmd.ExecuteNonQuery();
                     conn.Close();
                     MessageBox.Show("registration successful");
+                  //  }
+                       
                 }
                 catch
                 {
